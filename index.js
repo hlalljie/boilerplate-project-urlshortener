@@ -53,7 +53,7 @@ app.post("/api/shorturl",
           });
         }
         catch(err){
-          res.json({error:"Invalid URL"})
+          res.send({ error: 'invalid url'});
           return console.error(err);
         }        
     }
