@@ -38,6 +38,10 @@ app.use("/api/shorturl", bodyParser.urlencoded({extended: false}));
 app.post("/api/shorturl",
     (req, res) => {
         const og_url = req.body.url;
+        const httpRegex = /^(http|https)(:\/\/)/;
+        if (!httpRegex.test(og_url)) {
+          return res.json({ error: 'invalid url' });
+        }
         try {
           const urlObject = new URL(og_url);
           dns.lookup(urlObject.hostname,  (err, addresses, family) => {
@@ -53,8 +57,8 @@ app.post("/api/shorturl",
           });
         }
         catch(err){
+          console.error(err);
           res.send({ error: 'invalid url'});
-          return console.error(err);
         }        
     }
 );
