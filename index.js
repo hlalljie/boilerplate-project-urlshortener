@@ -59,12 +59,13 @@ app.post("/api/shorturl",
     }
 );
 
+// Redirect user to the appriopriate url based on the database id they enter
 app.get("/api/shorturl/:short_url",
     async function(req, res) {
       try{
         const foundUrlRecord = await urlRecord.findById(req.params.short_url, 'url').lean();
-        foundUrl = foundUrlRecord.url;
-        res.json({url: foundUrl});
+        const foundUrl = foundUrlRecord.url;
+        res.redirect(foundUrl);
       }
       catch(err){
         console.error(err);
