@@ -1,5 +1,5 @@
 # URL Shortener Microservice
-Provides a code for a shortenend version of any URL provided.
+Provides a code for a shortened version of any URL provided.
 
 ## Usage
 Add to your application to allow users to create a shorter version of any valid url and store the current urls in your database.
